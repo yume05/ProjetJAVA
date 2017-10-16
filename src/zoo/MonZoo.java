@@ -1,5 +1,6 @@
 package zoo;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -117,31 +118,97 @@ public class MonZoo {
 		//System.out.println(enclos4.toString());
 		enclos4.entretenirEnclos();
 		//System.out.println(enclos4.toString());*/
+		List<MonEnclos> listeEnclos =  new ArrayList<MonEnclos>();
 		Employe employer = new Employe("Lisa", false, 20);
 		Aquarium enclos5 = new Aquarium ("L'aquarium des baleines blanche", 50, 3, 0, 30);
-		employer.examinerEnclos(enclos1);
-		employer.examinerEnclos(enclos4);
-		employer.nourirAnimauxEnclos(enclos4);
-		enclos4.ajoutAnimal(baleine1);
-		enclos4.salirEnclos();
-		enclos4.salirEnclos();
-		employer.examinerEnclos(enclos4);
-		employer.nettoyerEnclos(enclos4);
-		employer.examinerEnclos(enclos4);
-		employer.examinerEnclos(enclos5);
-		employer.transferAnimalEnclos(enclos4, enclos5, baleine1);
-		employer.examinerEnclos(enclos4);
-		employer.examinerEnclos(enclos5);
-		/*enclos3.ajoutAnimal(aigle2);
-		enclos3.ajoutAnimal(aigle3);
+		listeEnclos.add(enclos5);
+		listeEnclos.add(enclos4);
+		listeEnclos.add(enclos3);
+		listeEnclos.add(enclos1);
 		
-		
-		System.out.println(enclos3.toString());
-		enclos3.salirEnclos();
-		enclos3.salirEnclos();
-		System.out.println(enclos3.toString());
-		enclos3.entretenirEnclos();
-		System.out.println(enclos3.toString());*/
+		System.out.println("Que voulez vous faire : ");
+		System.out.println("a: Examiner un enclos");
+		System.out.println("b: Nettoyer un enclos");
+		System.out.println("c: Nourir un enclos");
+		System.out.println("d: Transferer un animal");
+		System.out.println("q: Quit");
+		int i;
+		Scanner scan = new Scanner(System.in);
+		int choiceIndex;
+		int choiceIndex2;
+		int choiceIndexAnimal;
+		String choice = scan.nextLine();
+		do {
+		switch (choice){
+			
+			case "a":
+					i = 0;
+					System.out.println("-----EXAMINER ENCLOS--------");
+					System.out.println("Les enclos existants :");
+				   
+					for(MonEnclos a : listeEnclos){
+						System.out.println("-----------------"+i+" : ");
+						System.out.println(a);
+						i++;
+					}
+					choiceIndex = scan.nextInt();
+					employer.examinerEnclos(listeEnclos.get(choiceIndex));
+				break;
+
+		    case "b":
+		    		i = 0;
+			    	System.out.println("---------NETTOYER UN ENCLOS------");
+			    	System.out.println("Les enclos existants :");
+					   
+					for(MonEnclos a : listeEnclos){
+						System.out.println("-----------------"+i+" : ");
+						System.out.println(a);
+						i++;
+					}
+					choiceIndex = scan.nextInt();
+					employer.nettoyerEnclos(listeEnclos.get(choiceIndex));
+		        break;
+		        
+		    case "c":
+		    		i = 0;
+			    	System.out.println("---------NOURIR UN ENCLOS------");
+			    	System.out.println("Les enclos existants :");
+					for(MonEnclos a : listeEnclos){
+						System.out.println("-----------------"+i+" : ");
+						System.out.println(a);
+						i++;
+					}
+					choiceIndex = scan.nextInt();
+					employer.nourirAnimauxEnclos(listeEnclos.get(choiceIndex));
+		       
+		        break;
+		    case "d":
+		    		i = 0;
+			    	System.out.println("---------TRANSFERER ANIMAL------");
+			    	System.out.println("Les enclos existants :");
+					for(MonEnclos a : listeEnclos){
+						System.out.println("-----------------"+i+" : ");
+						System.out.println(a);
+						i++;
+					}
+					System.out.println("Choisir l'enclos d'origine");
+					choiceIndex = scan.nextInt();
+					System.out.println("Choisir l'enclos vers qui transferer");
+					choiceIndex2 = scan.nextInt();
+					System.out.println("Les animaux de l'enclos :");
+					/*for(Animal a : listeEnclos.get(choiceIndex).listeAnimaux){
+						System.out.println("-----------------"+i+" : ");
+						System.out.println(a);
+						i++;
+					}
+					System.out.println("Choisir l'animal :");
+					choiceIndexAnimal = scan.nextInt();
+					employer.transferAnimalEnclos(listeEnclos.get(choiceIndex),listeEnclos.get(choiceIndex2), listeAnimal.get(choiceIndexAnimal));*/
+		        break;
+
+		    }  
+		}while (choice != "q");
+
 
 
 	}
