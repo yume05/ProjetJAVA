@@ -126,31 +126,34 @@ public class MonZoo {
 		listeEnclos.add(enclos3);
 		listeEnclos.add(enclos1);
 		
-		System.out.println("Que voulez vous faire : ");
-		System.out.println("a: Examiner un enclos");
-		System.out.println("b: Nettoyer un enclos");
-		System.out.println("c: Nourir un enclos");
-		System.out.println("d: Transferer un animal");
-		System.out.println("q: Quit");
-		int i;
+		String mainMenu = "Que voulez vous faire :"+" \n"+
+		"a: Examiner un enclos"+"\n"+
+		"b: Nettoyer un enclos"+" \n"+
+		"c: Nourir un enclos"+" \n"+
+		"d: Transferer un animal"+" \n"+
+		"q: Quit"+"\n";
+		
+		int i=0;
+		String sousMenu = "Choisir son enclos :"+"\n";  
+		for(MonEnclos a : listeEnclos){
+			sousMenu += i+" : "+"\n";
+			sousMenu += a+"\n";
+			i++;
+		}
+		
 		Scanner scan = new Scanner(System.in);
 		int choiceIndex;
 		int choiceIndex2;
 		int choiceIndexAnimal;
-		String choice = scan.nextLine();
-		do {
+		String choice;
+		boolean loop = true;
+		while(loop){
+			System.out.println(mainMenu);
+			choice = scan.nextLine();
 		switch (choice){
-			
 			case "a":
-					i = 0;
 					System.out.println("-----EXAMINER ENCLOS--------");
-					System.out.println("Les enclos existants :");
-				   
-					for(MonEnclos a : listeEnclos){
-						System.out.println("-----------------"+i+" : ");
-						System.out.println(a);
-						i++;
-					}
+					System.out.println(sousMenu);
 					choiceIndex = scan.nextInt();
 					employer.examinerEnclos(listeEnclos.get(choiceIndex));
 				break;
@@ -158,13 +161,7 @@ public class MonZoo {
 		    case "b":
 		    		i = 0;
 			    	System.out.println("---------NETTOYER UN ENCLOS------");
-			    	System.out.println("Les enclos existants :");
-					   
-					for(MonEnclos a : listeEnclos){
-						System.out.println("-----------------"+i+" : ");
-						System.out.println(a);
-						i++;
-					}
+			    	System.out.println(sousMenu);
 					choiceIndex = scan.nextInt();
 					employer.nettoyerEnclos(listeEnclos.get(choiceIndex));
 		        break;
@@ -172,12 +169,7 @@ public class MonZoo {
 		    case "c":
 		    		i = 0;
 			    	System.out.println("---------NOURIR UN ENCLOS------");
-			    	System.out.println("Les enclos existants :");
-					for(MonEnclos a : listeEnclos){
-						System.out.println("-----------------"+i+" : ");
-						System.out.println(a);
-						i++;
-					}
+			    	System.out.println(sousMenu);
 					choiceIndex = scan.nextInt();
 					employer.nourirAnimauxEnclos(listeEnclos.get(choiceIndex));
 		       
@@ -185,12 +177,7 @@ public class MonZoo {
 		    case "d":
 		    		i = 0;
 			    	System.out.println("---------TRANSFERER ANIMAL------");
-			    	System.out.println("Les enclos existants :");
-					for(MonEnclos a : listeEnclos){
-						System.out.println("-----------------"+i+" : ");
-						System.out.println(a);
-						i++;
-					}
+			    	System.out.println(sousMenu);
 					System.out.println("Choisir l'enclos d'origine");
 					choiceIndex = scan.nextInt();
 					System.out.println("Choisir l'enclos vers qui transferer");
@@ -205,10 +192,12 @@ public class MonZoo {
 					choiceIndexAnimal = scan.nextInt();
 					employer.transferAnimalEnclos(listeEnclos.get(choiceIndex),listeEnclos.get(choiceIndex2), listeAnimal.get(choiceIndexAnimal));*/
 		        break;
-
-		    }  
-		}while (choice != "q");
-
+		    case "q":
+		    	loop = false;
+		    	System.out.println("Bye !");
+		    	break;
+		    } 
+		}
 
 
 	}
