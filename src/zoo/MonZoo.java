@@ -118,10 +118,20 @@ public class MonZoo {
 		enclos4.entretenirEnclos();
 		//System.out.println(enclos4.toString());*/
 		Employe employer = new Employe("Lisa", false, 20);
+		Aquarium enclos5 = new Aquarium ("L'aquarium des baleines blanche", 50, 3, 0, 30);
 		employer.examinerEnclos(enclos1);
-		enclos3.toString();
 		employer.examinerEnclos(enclos4);
 		employer.nourirAnimauxEnclos(enclos4);
+		enclos4.ajoutAnimal(baleine1);
+		enclos4.salirEnclos();
+		enclos4.salirEnclos();
+		employer.examinerEnclos(enclos4);
+		employer.nettoyerEnclos(enclos4);
+		employer.examinerEnclos(enclos4);
+		employer.examinerEnclos(enclos5);
+		employer.transferAnimalEnclos(enclos4, enclos5, baleine1);
+		employer.examinerEnclos(enclos4);
+		employer.examinerEnclos(enclos5);
 		/*enclos3.ajoutAnimal(aigle2);
 		enclos3.ajoutAnimal(aigle3);
 		

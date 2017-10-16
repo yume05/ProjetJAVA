@@ -60,6 +60,7 @@ public class Employe implements EmployeInterface {
 		if(enclosFutur.getNbrAnimaux() < enclosFutur.getMaxAnimaux()){
 			enclosFutur.ajoutAnimal(monAnimal);
 			enclosOriginal.enleverAnimal(monAnimal);
+			System.out.println("Le transfère s'est bien passé !");
 		}else{
 			System.out.println("Impossible de transferer l'animal dans cette enclos");
 		}
