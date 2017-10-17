@@ -20,6 +20,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 		this.maxAnimaux = maxAnimaux;
 		this.nbrAnimaux = nbrAnimaux;
 		this.proprete = PROPRETE1;
+		listeEnclos.add(this);
 	}
 	
 	protected String nom;
@@ -28,6 +29,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	protected int nbrAnimaux;
 	protected String proprete;
 	List<Animal> listeAnimaux =  new ArrayList<Animal>();
+	List<MonEnclos> listeEnclos =  new ArrayList<MonEnclos>();
 	List<Animal> listeAnimauxTemporaire =  new ArrayList<Animal>();
 	
 	public String getNom() {
