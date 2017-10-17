@@ -2,11 +2,12 @@ package zoo;
 import zoo.Volant;
 public class Voliere <Animal extends Volant> extends MonEnclos{
 
-	public Voliere(String nom, double superficie, int maxAnimaux, int nbrAnimaux, double hauteur, Boolean etatToit) {
+	public Voliere(String nom, double superficie, int maxAnimaux, double hauteur) {
 		// TODO Auto-generated constructor stub
-		super(nom, superficie, maxAnimaux, nbrAnimaux);
+		super(nom, superficie, maxAnimaux);
 		this.hauteur = hauteur;
-		this.etatToit = etatToit;
+		this.setEtatToit(true);
+		this.setNbrAnimaux(0);
 	}
 	
 	protected double hauteur;

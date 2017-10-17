@@ -1,14 +1,14 @@
 package zoo;
-import zoo.Marin;
 
 public class Aquarium <Animal extends Marin> extends MonEnclos{
 
-	public Aquarium(String nom, double superficie, int maxAnimaux, int nbrAnimaux, int profondeur) {
+	public Aquarium(String nom, double superficie, int maxAnimaux, int profondeur) {
 		// TODO Auto-generated constructor stub
-		super(nom, superficie, maxAnimaux, nbrAnimaux);
+		super(nom, superficie, maxAnimaux);
 		this.profondeur = profondeur;
-		this.tauxSalinite = 100;
+		this.setTauxSalinite(100);
 		this.hauteurEau = profondeur;
+		this.setNbrAnimaux(0);
 	}
 	
 	protected int profondeur;

@@ -14,13 +14,13 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	public static final String PROPRETE2 = "Correct";
 	public static final String PROPRETE3 = "Mauvais";
 	  
-	public MonEnclos(String nom, double superficie, int maxAnimaux, int nbrAnimaux){
+	public MonEnclos(String nom, double superficie, int maxAnimaux){
 		this.nom = nom;
 		this.superficie = superficie;
 		this.maxAnimaux = maxAnimaux;
-		this.nbrAnimaux = nbrAnimaux;
 		this.proprete = PROPRETE1;
-		listeEnclos.add(this);
+		this.setNbrAnimaux(0);
+		
 	}
 	
 	protected String nom;
@@ -29,7 +29,6 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	protected int nbrAnimaux;
 	protected String proprete;
 	List<Animal> listeAnimaux =  new ArrayList<Animal>();
-	List<MonEnclos> listeEnclos =  new ArrayList<MonEnclos>();
 	List<Animal> listeAnimauxTemporaire =  new ArrayList<Animal>();
 	
 	public String getNom() {
@@ -129,7 +128,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	 * @return
 	 */
 	  public MonEnclos creerEnclosTemporaire() {
-	        return new MonEnclos ("Enclos temporaire pour ",this.getSuperficie(), this.getMaxAnimaux(), this.getNbrAnimaux());
+	        return new MonEnclos ("Enclos temporaire pour ",this.getSuperficie(), this.getMaxAnimaux());
 	}
 	/**
 	 * Entretenir Enclos
