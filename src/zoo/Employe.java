@@ -1,5 +1,5 @@
 package zoo;
-import zoo.MonEnclos;
+import zoo.Enclos;
 import zoo.AnimalInterface;
 
 import java.util.ArrayList;
@@ -38,24 +38,24 @@ public class Employe implements EmployeInterface {
 	}
 
 
-	public void examinerEnclos(MonEnclos enclos) {
+	public void examinerEnclos(Enclos enclos) {
 		// TODO Auto-generated method stub
 		System.out.println(enclos.toString());
 	}
 
 	@Override
-	public void nettoyerEnclos(MonEnclos enclos) {
+	public void nettoyerEnclos(Enclos enclos) {
 		// TODO Auto-generated method stub
 		enclos.entretenirEnclos();
 		
 	}
 	@Override
-	public void nourirAnimauxEnclos(MonEnclos enclos) {
+	public void nourirAnimauxEnclos(Enclos enclos) {
 		// TODO Auto-generated method stub
 		enclos.nourirAnimaux();
 	}
 	@Override
-	public void transferAnimalEnclos(MonEnclos enclosOriginal, MonEnclos enclosFutur, Animal monAnimal) {
+	public void transferAnimalEnclos(Enclos enclosOriginal, Enclos enclosFutur, Animal monAnimal) {
 		// TODO Auto-generated method stub
 		if(enclosFutur.getNbrAnimaux() < enclosFutur.getMaxAnimaux()){
 			enclosFutur.ajoutAnimal(monAnimal);

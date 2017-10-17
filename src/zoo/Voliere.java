@@ -1,6 +1,6 @@
 package zoo;
 import zoo.Volant;
-public class Voliere <Animal extends Volant> extends MonEnclos{
+public class Voliere <T extends Animal & Volant> extends Enclos<T>{
 
 	public Voliere(String nom, double superficie, int maxAnimaux, double hauteur) {
 		// TODO Auto-generated constructor stub
@@ -30,7 +30,6 @@ public class Voliere <Animal extends Volant> extends MonEnclos{
 	}
 	
 	public void salirEnclos(){
-		super.salirEnclos();
 		if(this.getEtatToit()){
 			this.setEtatToit(false);
 		}
@@ -47,14 +46,22 @@ public class Voliere <Animal extends Volant> extends MonEnclos{
 	 * Affiche les caractéristiques de l'enclos, et les animaux dedans.
 	 */
 	public String toString() {
-		return("Ma Volière : \n " +
-				"[Nom=" + this.getNom() + ", " +"\n" +
-				"Superficie=" + this.getSuperficie()+ ", \n" +
-				"Maximum Animaux=" + this.getMaxAnimaux() + ", \n " +
-				"Nombre animaux=" + this.getNbrAnimaux()+ ",\n " +
-				"Hauteur = "+this.getHauteur()+ ",\n" +
-				"Etat du toit = "+this.getEtatToit()+ "]"
-				);
+		String etatToits;
+		if(this.etatToit == false){
+			etatToits = "mauvais";
+		}else{
+			etatToits = "bon";
+		}
+		return("Ma Volière s'appelle \"" + this.getNom() + "\", possède une superficie de " + this.getSuperficie()+ ", peut contenir maximum " + this.getMaxAnimaux() + " animaux volants, contient actuellement " + this.getNbrAnimaux()+ " animaux, sa hauteur est de "+this.getHauteur()+ " et le toit est en "+etatToits+" etat.");
+	}
+
+	public void ajoutAnimal(T animal){
+		super.ajoutAnimal(animal);
+	}
+	@Override
+	public Enclos creerEnclosTemporaire() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

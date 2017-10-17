@@ -1,6 +1,8 @@
 package zoo;
 
-abstract class Animal extends MonEnclos implements AnimalInterface{
+import java.util.Random;
+
+abstract class Animal{
 
 	public Animal() {
 		// TODO Auto-generated constructor stub
@@ -15,6 +17,30 @@ abstract class Animal extends MonEnclos implements AnimalInterface{
 	protected int age;
 	//True == les indices sont tous à 100 % donc pas besoin de manger, dormir, ou être soigné
 	private Boolean indiceFaim = true;
+	public Boolean getIndiceFaim() {
+		return indiceFaim;
+	}
+
+	public void setIndiceFaim(Boolean indiceFaim) {
+		this.indiceFaim = indiceFaim;
+	}
+
+	public Boolean getIndiceSommeil() {
+		return indiceSommeil;
+	}
+
+	public void setIndiceSommeil(Boolean indiceSommeil) {
+		this.indiceSommeil = indiceSommeil;
+	}
+
+	public Boolean getIndiceSante() {
+		return indiceSante;
+	}
+
+	public void setIndiceSante(Boolean indiceSante) {
+		this.indiceSante = indiceSante;
+	}
+
 	private Boolean indiceSommeil = true;
 	private Boolean indiceSante = true;
 	
@@ -70,9 +96,9 @@ abstract class Animal extends MonEnclos implements AnimalInterface{
 	}
 
 	protected abstract void mangerVrai();
-	protected abstract void deplacement();
 	protected abstract void crier();
 	
+	protected abstract void accouplement(Animal a1, Animal a2);
 	/**
 	 * L'animal peu être soigné si ca santé est à 0
 	 */
@@ -87,6 +113,10 @@ abstract class Animal extends MonEnclos implements AnimalInterface{
 			
 	}
 	
+	public Boolean getRandomBoolean(){
+		Random random = new Random();
+		return random.nextBoolean();
+	}
 	/**
 	 * L'animal dort si il est réveiller
 	 */

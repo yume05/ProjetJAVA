@@ -1,11 +1,11 @@
 package zoo;
-import zoo.MonEnclos;
+import zoo.Enclos;
 
 import zoo.Animal;
 
 public interface EmployeInterface {
-	void examinerEnclos(MonEnclos enclos);
-	void nettoyerEnclos(MonEnclos enclos);
-	void nourirAnimauxEnclos(MonEnclos enclos);
-	void transferAnimalEnclos(MonEnclos enclosOriginal, MonEnclos enclosFutur, Animal monAnimal);
+	void examinerEnclos(Enclos enclos);
+	void nettoyerEnclos(Enclos enclos);
+	void nourirAnimauxEnclos(Enclos enclos);
+	void transferAnimalEnclos(Enclos enclosOriginal, Enclos enclosFutur, Animal monAnimal);
 }

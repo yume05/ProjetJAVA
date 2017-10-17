@@ -38,31 +38,16 @@ public class Loup extends Animal implements Terrestre, Mammifere {
 		System.out.println("Je vagabonde dans les champs !");
 	}
 	
-	public void accouplement(Animal animal){
-		//Si femelle
-		/*CREER UN CLASSE QUI PERMET DE S OCCUPER DE LA NAISSANCE DU LOUP
-		 * UNE CLASSE QUI POSSÈDE, LE NOM DE L'ENCLOS, ET L'ANIMAL
-		 * if(this.isSexe()){
-			System.out.println("L'animal est une femelle, il faut donc lui trouver un mâle");
-			System.out.println("La femelle s'accouplera avec "+animal.getNom());
-			System.out.println("Début de la gestation");
-			this.gestation = true;
-		}*/
+	public void accouplement(Animal l1, Animal l2){
+			if(l1.isSexe()==true && l2.isSexe() == false){
+				
+			}
+			else if(l2.isSexe()==true && l1.isSexe() == false){
+				
+			}
 	}
 	
 	public void mettreBas(){
-		/*if(this.gestation){
-			try{
-				Thread.sleep(62000);
-				System.out.println("Un bébé loup est né !");
-				Scanner sc = new Scanner(System.in);
-				System.out.println("Saisissez son nouveau nom :");
-				String str = sc.nextLine();
-				Loup loup1 = new Loup(str, true, 7, 20, 1);
-				this.
-			}catch(Exception e){
-				
-			}
-		}*/
+
 	}
 }

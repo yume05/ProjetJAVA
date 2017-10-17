@@ -1,6 +1,5 @@
 package zoo;
 
 public interface Terrestre {
-	void crier ();
-	void deplacement ();
+	public abstract void deplacement ();
 }

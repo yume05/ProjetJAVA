@@ -1,9 +1,12 @@
 package zoo;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.lang.reflect.*;;
 
 public class MonZoo {
 
@@ -12,23 +15,19 @@ public class MonZoo {
 		this.nom = nom;
 		this.employer = employer;
 		this.maxEnclos = maxEnclos;
-		this.setListeEnclos(new ArrayList<MonEnclos>());
+		this.setListeEnclos(new ArrayList<Enclos>());
 	}
-	Scanner scan = new Scanner(System.in);
-	int choiceEnclos = 0;
-	int choiceFutur = 0;
-	int choiceAnimal = 0;
-	int i = 0;
+	
 	protected String nom;
 	protected Employe employer;
 	protected int maxEnclos;
-	protected List<MonEnclos> listeEnclos =  new ArrayList<MonEnclos>();
+	protected List<Enclos> listeEnclos =  new ArrayList<Enclos>();
 	
-	public List<MonEnclos> getListeEnclos() {
+	public List<Enclos> getListeEnclos() {
 		return listeEnclos;
 	}
 
-	public void setListeEnclos(List<MonEnclos> listeEnclos) {
+	public void setListeEnclos(List<Enclos> listeEnclos) {
 		this.listeEnclos = listeEnclos;
 	}
 
@@ -57,7 +56,7 @@ public class MonZoo {
 	}
 	
 	public void transfererAnimal(){
-		System.out.println("Choisir l'enclos d'origine");
+		/*System.out.println("Choisir l'enclos d'origine");
 		choiceEnclos = scan.nextInt();
 		System.out.println("Choisir l'enclos vers qui transferer");
 		choiceFutur = scan.nextInt();
@@ -74,12 +73,18 @@ public class MonZoo {
 			System.out.println("Choisir l'animal :");
 			choiceAnimal = scan.nextInt();
 			employer.transferAnimalEnclos(this.listeEnclos.get(choiceEnclos), this.listeEnclos.get(choiceFutur), liste.get(choiceAnimal));
-		}
+		}*/
 		
 	}
 	
 	public void creerAnimal(int enclos){
-		
+		//CREER METHODE AJOUT ANIMAL DANS ENCLOS
+		//CHOIX ANIMAL
+		//AFFICHE ENCLOS EN FONCTION DU TYPE DE LANIMAL
+		//PUIS AJOUT
+		//BIBLIOTHEQUE D'ANIMAUX PRE EXISTANT
+		//RETIRER LAJOUT D'ANIMAUX
+		Scanner scan = new Scanner(System.in);
 		System.out.println("VOTRE ANIMAL :");
 		System.out.println("Entrer son nom :");
 		String nomAnimal = scan.next();
@@ -95,61 +100,57 @@ public class MonZoo {
 		int tailleAnimal = scan.nextInt();
 		System.out.println("Entrer son age :");
 		int ageAnimal = scan.nextInt();
-		System.out.println("Choisir l'espèce :");
-		System.out.println("1 - Baleine");
-		System.out.println("2 - Requin");
-		System.out.println("3 - Pingouin");
-		System.out.println("4 - Poisson Rouge");
-		System.out.println("5 - Aigle");
-		System.out.println("6 - Loup");
-		System.out.println("7 - Ours");
-		System.out.println("8 - Tigre");
-		int espece = scan.nextInt();
-		
-		switch(espece){
-		case 1:
+		Enclos enclos1  = this.listeEnclos.get(enclos);
+		String mot = enclos1.recupClass();
+		switch(mot){
+		case "Baleine":
 			Baleine b = new Baleine(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(b);
+			enclos1.ajoutAnimal(b);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 2:
+		case "Requin":
 			Requin r = new Requin(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(r);
+			enclos1.ajoutAnimal(r);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 3:
+		case "Pingouin":
 			Pingouin p = new Pingouin(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(p);
+			enclos1.ajoutAnimal(p);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 4:
+		case "PoissonRouge":
 			PoissonRouge pr = new PoissonRouge(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(pr);
+			enclos1.ajoutAnimal(pr);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 5:
+		case "Aigle":
 			Aigle a = new Aigle(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(a);
+			enclos1.ajoutAnimal(a);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 6:
+		case "Loup":
 			Loup l = new Loup(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(l);
+			enclos1.ajoutAnimal(l);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 7:
+		case "Ours":
 			Ours o = new Ours(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(o);
+			enclos1.ajoutAnimal(o);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
-		case 8:
+		case "Tigre":
 			Tigre t = new Tigre(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
-			this.getListeEnclos().get(enclos).ajoutAnimal(t);
+			enclos1.ajoutAnimal(t);
 			System.out.println("Bienvenue à toi dans notre zoo !");
 			break;
 		}
+
+		
+		//monEnclos b = new monEnclos(nomAnimal, sexeA, poidsAnimal, tailleAnimal, ageAnimal);
+		//	this.getListeEnclos().get(enclos).ajoutAnimal(b);
+		//	System.out.println("Bienvenue à toi dans notre zoo !");
 	}
-	public void enleverEnclos(MonEnclos enclos){
+	public void enleverEnclos(Enclos enclos){
 		if (this.getListeEnclos().size() < this.getMaxEnclos()) {
             this.getListeEnclos().remove(enclos);
         } else {
@@ -160,18 +161,19 @@ public class MonZoo {
 	
 	public void afficheNbreAnimaux (){
 		int nbrAnimaux = 0;
-		for (MonEnclos enclos : listeEnclos){
+		for (Enclos enclos : listeEnclos){
 			nbrAnimaux += enclos.getNbrAnimaux();
 		}
 		System.out.println("Le nombre d'animaux dans le zoo est de : "+nbrAnimaux);
+		System.out.println("Le nombre d'enclos dans le zoo est de : "+this.listeEnclos.size());
 	}
 	
 	public void afficheAnimauxEnclos(){
-		for (MonEnclos enclos : listeEnclos){
-			System.out.println(enclos.getNom());
-			List<Animal> a = enclos.listeAnimaux;
+		for (Enclos enclos : listeEnclos){
+			System.out.println("\n -- "+enclos+"\n");
+			ArrayList<Animal> a = enclos.listeAnimaux;
 			for(Animal animal : a){
-				System.out.println(animal);
+				System.out.println("	-- "+animal);
 			}
 		}
 	}
@@ -181,7 +183,7 @@ public class MonZoo {
 		int i = 0;
 		int choice;
 		Scanner scan = new Scanner(System.in);
-		for(MonEnclos a : listeEnclos){
+		for(Enclos a : listeEnclos){
 			System.out.println("--- "+i);
 			System.out.println(a.getNom());
 			i++;
@@ -198,27 +200,50 @@ public class MonZoo {
 	}
 	
 	public void deteriorerEnclos(){
-        for (MonEnclos enclos : this.getListeEnclos()) {
-            enclos.deterioreEnclos();
-        }
-        System.out.println("Les enclos sont détériorer, il faut les entretenir !");
+		if(listeEnclos.size() > 0){
+	        for (Enclos enclos : this.getListeEnclos()) {
+	            enclos.deterioreEnclos();
+	        }
+	        System.out.println("Message de la voix du zoo : \"Les enclos sont détériorés, il faut les entretenir !\"\n");
+		}
 	}
 	
+	public void randomAll(){
+		this.deteriorerEnclos();
+		for(Enclos enclos : this.listeEnclos){
+			enclos.randomAnimaux();
+		}
+	}
 	public static void main(String[] args) {
 		
 		// création d'une liste de String
-		
 		Employe employer = new Employe("Lisa", false, 20);
-		MonZoo zoo = new MonZoo("Le zoo !", employer, 10);
-
+		MonZoo zoo = new MonZoo("Aux pays des Nanimaux !", employer, 20);
+		Baleine b1 = new Baleine("Petite bleue", false, 5000, 5, 3);
+		Baleine b2 = new Baleine("Petite blanche", false, 6000, 5, 2);
+		Loup l1 = new Loup("Lilou", true, 40, 30, 2);
+		Loup l2 = new Loup("Lou", false, 40, 20, 3);
+		Aquarium<Baleine> a1 = new Aquarium<Baleine>("Les Baleines", 32, 5, 9);
+		EnclosTerrestre<Loup> loup = new EnclosTerrestre<Loup>("Les Loup", 32, 5);
+		zoo.getListeEnclos().add(a1);
+		zoo.getListeEnclos().add(loup);
+		loup.ajoutAnimal(l2);
+		loup.ajoutAnimal(l1);
+		a1.ajoutAnimal(b1);
 		Scanner scan = new Scanner(System.in);
+		int choiceEnclos = 0;
+		int choiceFutur = 0;
+		int choiceAnimal = 0;
+		int i = 0;
+		String especeEnclos;
 		int choice = 0;
 		Boolean loop = true;
 		int indice;
-		
+		System.out.println("Bienvenue dans le zoo  \""+zoo.getNom()+"\"");
+		System.out.println("___________________________________________\n");
 		do{
-				System.out.println("\n\n          MENU");
-		        System.out.println("--------------------------------------");
+				System.out.println("\n\n          QUE VOULEZ VOUS FAIRE ? \n");
+		        System.out.println("********************************************");
 		        System.out.println("1 - Créer enclos");
 		        System.out.println("2 - Supprimer enclos");
 		        System.out.println("3 - Créer animal");
@@ -230,8 +255,8 @@ public class MonZoo {
 		        choice = scan.nextInt();
 			switch (choice){
 				case 1:
-					int i = 0;
-					System.out.println("1 - ENCLOS");
+					i = 0;
+					System.out.println("1 - ENCLOS Terrestre");
 				    System.out.println("2 - VOLIERE");
 				    System.out.println("3 - AQUARIUM");
 				    choice = scan.nextInt();
@@ -239,59 +264,118 @@ public class MonZoo {
 				    case 1 :
 				    	System.out.println("Entrer un nom d'enclos :");
 						String nomEnclos = scan.next();
+						scan.nextLine();
 				    	System.out.println("Entrer une superficie d'enclos :");
-						int superficieEnclos;
-						superficieEnclos = scan.nextInt();
+						int superficieEnclos = scan.nextInt();
 						System.out.println("Entrer un nombre maximum d'animaux :");
-						int nbrMaxEnclos;
-						nbrMaxEnclos= scan.nextInt();
-						
+						int nbrMaxEnclos= scan.nextInt();
+						System.out.println("Choississez l'espèce d'animal qu'aura cet enclos :");
+						System.out.println("T pour tigre, O pour ours, L pour loup...");
+						especeEnclos = scan.next();
+						scan.nextLine();
 						if (zoo.getListeEnclos().size() < zoo.getMaxEnclos()) {
-							MonEnclos a = new MonEnclos(nomEnclos, superficieEnclos, nbrMaxEnclos);
-				            zoo.getListeEnclos().add(a);
-				            System.out.println("Enclos créé !");
+							//EnclosTerrestre<Tigre> 
+							if(especeEnclos == "T"){
+								EnclosTerrestre<Tigre> a = new EnclosTerrestre<Tigre>(nomEnclos, superficieEnclos, nbrMaxEnclos);
+					            zoo.getListeEnclos().add(a);
+					            System.out.println("Enclos créé !");
+					            break;
+							}else
+								if(especeEnclos == "O"){
+									EnclosTerrestre<Ours> a = new EnclosTerrestre<Ours>(nomEnclos, superficieEnclos, nbrMaxEnclos);
+						            zoo.getListeEnclos().add(a);
+						            System.out.println("Enclos créé !");
+						            break;
+								}else
+									if(especeEnclos == "L"){
+										EnclosTerrestre<Loup> a = new EnclosTerrestre<Loup>(nomEnclos, superficieEnclos, nbrMaxEnclos);
+							            zoo.getListeEnclos().add(a);
+							            System.out.println("Enclos créé !");
+							            break;
+									}
+								
+							
+							System.out.println("Erreur !!");
+							break;
+							
 				        } else {
 				            // TODO : throw exception
 				            System.out.println("Erreur, vous avez dépassé le nombre maximum d'enclos créer.");
 				            break;
 				        }
-						
-				    break;
 	
 				    case 2:
 				    	System.out.println("Entrer un nom de volière :");
 						String nomV = scan.next();
+						scan.nextLine();
 						System.out.println("Entrer une superficie d'enclos :");
 						int superficieV = scan.nextInt();
 						System.out.println("Entrer un nombre maximum d'animaux :");
 						int nbrMaxV = scan.nextInt();
 						System.out.println("Entrer l'hauteur de la volière :");
 						int hauteurV = scan.nextInt();
-						
+						System.out.println("Choississez l'espèce d'animal qu'aura cet enclos :");
+						System.out.println("A pour aigle...");
+
+						especeEnclos = scan.nextLine();
+						System.out.println(especeEnclos);
 						if (zoo.getListeEnclos().size() < zoo.getMaxEnclos()) {
-							Voliere v = new Voliere(nomV, superficieV, nbrMaxV, hauteurV);
-				            zoo.getListeEnclos().add(v);
-				            System.out.println("Volière créé !");
+							
+							if(especeEnclos == "A"){
+								Voliere<Aigle> v = new Voliere<Aigle>(nomV, superficieV, nbrMaxV, hauteurV);
+					            zoo.getListeEnclos().add(v);
+					            System.out.println("Volière créé !");
+					            break;
+							}else{
+								System.out.println("Erreur !!");
+								break;
+							}
+							
 				        } else {
 				            // TODO : throw exception
 				            System.out.println("Erreur, vous avez dépassé le nombre maximum d'enclos créer.");
 				        }
-						
 				    	break;
 				    case 3:
-				    	
 						System.out.println("Entrer un nom d'aquarium :");
 						String nomA = scan.next();
 						System.out.println("Entrer une superficie d'enclos :");
+						scan.nextLine();
 						int superficieA = scan.nextInt();
 						System.out.println("Entrer un nombre maximum d'animaux :");
 						int nbrMaxA = scan.nextInt();
 						System.out.println("Entrer une profondeur :");
 						int profondeurA = scan.nextInt();
+						System.out.println("Choississez l'espèce d'animal qu'aura cet enclos :");
+						System.out.println("B pour baleine, P pour pingouin, E pour poisson rouge, R pour requin...");
+						scan.nextLine();
+						especeEnclos = scan.next();
 						if (zoo.getListeEnclos().size() < zoo.getMaxEnclos()) {
-							Aquarium c = new Aquarium(nomA, superficieA, nbrMaxA, profondeurA);
-				            zoo.getListeEnclos().add(c);        
-				            System.out.println("Aquarium créé !");
+							if(especeEnclos == "B"){
+								Aquarium<Baleine> c = new Aquarium<Baleine>(nomA, superficieA, nbrMaxA, profondeurA);
+					            zoo.getListeEnclos().add(c);        
+					            System.out.println("Aquarium créé !");
+					            break;
+							} else if(especeEnclos == "P"){
+								Aquarium<Pingouin> c = new Aquarium<Pingouin>(nomA, superficieA, nbrMaxA, profondeurA);
+					            zoo.getListeEnclos().add(c);        
+					            System.out.println("Aquarium créé !");
+					            break;
+							} else if(especeEnclos == "E"){
+								Aquarium<PoissonRouge> c = new Aquarium<PoissonRouge>(nomA, superficieA, nbrMaxA, profondeurA);
+					            zoo.getListeEnclos().add(c);        
+					            System.out.println("Aquarium créé !");
+					            break;
+							} else if(especeEnclos == "R"){
+								Aquarium<Requin> c = new Aquarium<Requin>(nomA, superficieA, nbrMaxA, profondeurA);
+					            zoo.getListeEnclos().add(c);        
+					            System.out.println("Aquarium créé !");
+					            break;
+							}else{
+								System.out.println("Erreur !!");
+								break;
+							}
+							
 				        } else {
 				            // TODO : throw exception
 				            System.out.println("Erreur, vous avez dépassé le nombre maximum d'enclos créer.");
@@ -299,6 +383,8 @@ public class MonZoo {
 						break;
 				    }
 					break;
+					
+					
 				case 2:
 					if(zoo.listeEnclos.size() ==0){
 						System.out.println("Creer d'abord un enclos !!");
@@ -306,6 +392,7 @@ public class MonZoo {
 					}
 						zoo.supprimerEnclos();
 						break;
+						
 					
 				case 3:
 					System.out.println("CREER ANIMAL");
@@ -315,7 +402,7 @@ public class MonZoo {
 					}
 						System.out.println("Choisir un enclos");
 						indice = 0;
-						for(MonEnclos a : zoo.listeEnclos){
+						for(Enclos a : zoo.listeEnclos){
 							System.out.println("--- "+indice);
 							System.out.println(a.getNom());
 							indice++;
@@ -323,8 +410,8 @@ public class MonZoo {
 						int enclos = scan.nextInt();
 						
 						zoo.creerAnimal(enclos);
-						
 						break;
+						
 					
 				case 4:
 					if(zoo.listeEnclos.size() ==0){
@@ -345,12 +432,12 @@ public class MonZoo {
 					System.out.println("VOUS ETES L'EMPLOYER");
 					
 					
-					int choiceEnclos = 0;
+					choiceEnclos = 0;
 					String choiceEmployer;
 					Boolean loop1 = true;
 					do{
 						indice = 0;
-						for(MonEnclos a : zoo.listeEnclos){
+						for(Enclos a : zoo.listeEnclos){
 							System.out.println("--- "+indice+" "+a.getNom());
 							indice++;
 						}
@@ -376,7 +463,7 @@ public class MonZoo {
 						    case "b":
 						    		i = 0;
 							    	System.out.println("---------NETTOYER UN ENCLOS------");
-									if(zoo.listeEnclos.size() ==0){
+									if(zoo.listeEnclos.size() == 0){
 										System.out.println("Creer d'abord un enclos !!");
 										break;
 									}
@@ -418,6 +505,8 @@ public class MonZoo {
 				break;
 					
 			}
+			System.out.println("\n\n");
+			zoo.randomAll();
 		}while(loop == true);
 	}
 

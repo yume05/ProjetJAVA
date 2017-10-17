@@ -1,6 +1,6 @@
 package zoo;
 
-public class Aquarium <Animal extends Marin> extends MonEnclos{
+public class Aquarium <T extends Animal & Marin> extends Enclos<T>{
 
 	public Aquarium(String nom, double superficie, int maxAnimaux, int profondeur) {
 		// TODO Auto-generated constructor stub
@@ -41,8 +41,8 @@ public class Aquarium <Animal extends Marin> extends MonEnclos{
 		}
 	}
 
+
 	public void salirEnclos(){
-		super.salirEnclos();
 		this.setHauteurEau(this.getHauteurEau() - 1);
 		this.setTauxSalinite(this.getTauxSalinite() - 10);
 	}
@@ -67,15 +67,12 @@ public class Aquarium <Animal extends Marin> extends MonEnclos{
 	}
 	
 	public String toString() {
-		return("Mon Aquarium : \n " +
-				"[Nom=" + this.getNom() + ", " +"\n" +
-				"Superficie=" + this.getSuperficie()+ ", \n" +
-				"Maximum Animaux=" + this.getMaxAnimaux() + ", \n " +
-				"Nombre animaux=" + this.getNbrAnimaux()+ ",\n " +
-				"Profondeur autorisée = "+this.getProfondeur()+ ",\n" +
-				"Taux de salinité = "+this.getTauxSalinite()+ ", \n"+
-				"Niveau de l'eau = "+this.getHauteurEau()+" ]"
-				);
+		return("Mon aquarium s'appelle \"" + this.getNom() + "\", sa superficie est de " + this.getSuperficie()+ ", il ne peut contenir pas plus de " + this.getMaxAnimaux() + " animaux, il en possède déjà " + this.getNbrAnimaux()+ ", sa profondeur autorisée est de "+this.getProfondeur()+ ", son taux de salinité est à "+this.getTauxSalinite()+"% et son niveau d'eau "+this.getHauteurEau()+".");
+	}
+	@Override
+	public Enclos creerEnclosTemporaire() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

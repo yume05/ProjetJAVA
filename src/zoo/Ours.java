@@ -32,9 +32,14 @@ public class Ours extends Animal implements Terrestre, Mammifere {
 		System.out.println("Je vagabonde dans les champs !");
 	}
 	
-	public void accouplement(Animal animal){
-		
-	}
+	public void accouplement(Animal l1, Animal l2){
+		if(l1.isSexe()==true && l2.isSexe() == false){
+			
+		}
+		else if(l2.isSexe()==true && l1.isSexe() == false){
+			
+		}
+}
 	public void mettreBas(){
 		
 	}

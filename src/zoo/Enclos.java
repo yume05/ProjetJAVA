@@ -1,20 +1,20 @@
 package zoo;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.concurrent.*;
 import zoo.Animal;
 import zoo.AnimalInterface;
 
-public class MonEnclos <Animal extends AnimalInterface> {
-
-	public MonEnclos() {
+public abstract class Enclos<T extends Animal> {
+	public Enclos() {
 		// TODO Auto-generated constructor stub
 	}
-	public static final String PROPRETE1 = "Bon";
-	public static final String PROPRETE2 = "Correct";
-	public static final String PROPRETE3 = "Mauvais";
+	public static final String PROPRETE1 = "bon";
+	public static final String PROPRETE2 = "correct";
+	public static final String PROPRETE3 = "mauvais";
 	  
-	public MonEnclos(String nom, double superficie, int maxAnimaux){
+	public Enclos(String nom, double superficie, int maxAnimaux){
 		this.nom = nom;
 		this.superficie = superficie;
 		this.maxAnimaux = maxAnimaux;
@@ -28,8 +28,8 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	protected int maxAnimaux;
 	protected int nbrAnimaux;
 	protected String proprete;
-	List<Animal> listeAnimaux =  new ArrayList<Animal>();
-	List<Animal> listeAnimauxTemporaire =  new ArrayList<Animal>();
+	ArrayList<T> listeAnimaux =  new ArrayList<T>();
+	ArrayList<T> listeAnimauxTemporaire =  new ArrayList<T>();
 	
 	public String getNom() {
 		return nom;
@@ -61,23 +61,14 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	public void setProprete(String proprete) {
 		this.proprete = proprete;
 	}
-	@Override
-	/**
-	 * Affiche les caractéristiques de l'enclos, et les animaux dedans.
-	 */
-	public String toString() {
-		System.out.println("Mon enclos : \n" +
-				"[Nom=" + this.getNom() + ",\n" +
-				" Superficie=" + this.getSuperficie()+ ", \n" +
-				" Max Animaux=" + this.getMaxAnimaux() + ", \n " +
-				" Proprete=" + this.getProprete() + ", \n" +
-				" Nombre d'animaux : "+this.getNbrAnimaux()+"]");
-		for (Animal a : this.listeAnimaux) {
-			 System.out.println(a);
-		   
-		 }
-		 return "";
-		
+
+	
+	public void randomAnimaux(){
+		for(Animal a : this.listeAnimaux){
+			a.setIndiceFaim(a.getRandomBoolean());
+			a.setIndiceSante(a.getRandomBoolean());
+			a.setIndiceSommeil(a.getRandomBoolean());
+		}
 	}
 	/**
 	 * deteriore Enclos
@@ -93,7 +84,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	/**
 	 * Enlever animal
 	 */
-	public void enleverAnimal (Animal animal){
+	public void enleverAnimal (T animal){
 		if(this.getNbrAnimaux() > 0){
 			this.listeAnimaux.remove(animal);
 			this.nbrAnimaux--;
@@ -105,7 +96,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	/**
 	 * Ajoute Animal
 	 */
-	public void ajoutAnimal(Animal animal){
+	public void ajoutAnimal(T animal){
 		 // ajout d'éléments à cette liste
 		if(this.getNbrAnimaux() <= this.getMaxAnimaux()){
 			this.listeAnimaux.add(animal);
@@ -127,9 +118,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 	 * Création d'un enclos temporaire
 	 * @return
 	 */
-	  public MonEnclos creerEnclosTemporaire() {
-	        return new MonEnclos ("Enclos temporaire pour ",this.getSuperficie(), this.getMaxAnimaux());
-	}
+	 public abstract Enclos creerEnclosTemporaire();
 	/**
 	 * Entretenir Enclos
 	 * Vider les animaux d'abord
@@ -139,7 +128,7 @@ public class MonEnclos <Animal extends AnimalInterface> {
 		if(this.getNbrAnimaux() > 0){
 			if(this.getProprete() == PROPRETE3){
 				System.out.println("Il faut entretenir l'enclos !");
-				MonEnclos temporaireEnclos = this.creerEnclosTemporaire();
+				Enclos temporaireEnclos = this.creerEnclosTemporaire();
 				listeAnimauxTemporaire =  this.listeAnimaux ;
 				//On transfere les animaux
 				for(Animal a : listeAnimauxTemporaire){
@@ -164,5 +153,20 @@ public class MonEnclos <Animal extends AnimalInterface> {
 		}else{
 			System.out.println("L'enclos n'a pas d'animaux.");
 		}
+	}
+	public String recupClass(){
+		//ArrayList<T> a = this.listeAnimaux;
+		ArrayList<T> a = this.listeAnimaux;
+		String enclos1 = "";
+		for(Animal b : a){
+			enclos1 = b.getClass().toString();	
+		}
+		String[]mots = enclos1.split (" "); 
+		String mot = mots[1];
+		String[]mo = mot.split ("\\."); 
+		String m = mo[1];
+		return m;
+		
+		
 	}
 }

@@ -25,13 +25,18 @@ public class PoissonRouge extends Animal implements Marin, Ovipare {
 	/**
 	 * L'animal se déplace dans son habitat
 	 */
-	public void deplacement (){
+	public void nager(){
 		System.out.println("Je nage dans l'eau !");
 	}
 
-	public void accouplement(){
-		
-	}
+	public void accouplement(Animal l1, Animal l2){
+		if(l1.isSexe()==true && l2.isSexe() == false){
+			
+		}
+		else if(l2.isSexe()==true && l1.isSexe() == false){
+			
+		}
+}
 	
 	public void pondreOeuf(){
 		

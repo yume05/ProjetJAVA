@@ -1,6 +1,5 @@
 package zoo;
 
 public interface Volant{
-	void crier ();
-	void deplacement ();
+	public abstract void voler();
 }
