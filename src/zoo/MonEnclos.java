@@ -80,9 +80,9 @@ public class MonEnclos <Animal extends AnimalInterface> {
 		
 	}
 	/**
-	 * Salir Enclos
+	 * deteriore Enclos
 	 */
-	public void salirEnclos(){
+	public void deterioreEnclos(){
 		if(this.getProprete() == PROPRETE1){
 			this.setProprete(PROPRETE2);
 		}else if(this.getProprete() == PROPRETE2){

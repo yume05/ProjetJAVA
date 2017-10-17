@@ -77,7 +77,14 @@ abstract class Animal extends MonEnclos implements AnimalInterface{
 	 * L'animal peu être soigné si ca santé est à 0
 	 */
 	public void soigner(){
-		System.out.println("Je suis soigné !");
+		if(this.indiceSante){
+			System.out.println("Je suis malade !");
+			this.indiceSante = false;
+			System.out.println("Merci, je suis soigné !");
+		}else{
+			System.out.println("Je suis déjà soigné !");
+		}
+			
 	}
 	
 	/**
@@ -85,7 +92,7 @@ abstract class Animal extends MonEnclos implements AnimalInterface{
 	 */
 	public void dormir(){
 		if(this.indiceSommeil){
-			System.out.println("Je m'endors !");
+			System.out.println("J'ai besoin de dormir, je m'endors !");
 			this.indiceSommeil = false;
 		} else {
 			System.out.println("Je dors déjà...");
