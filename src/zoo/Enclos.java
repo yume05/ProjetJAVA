@@ -30,6 +30,7 @@ public abstract class Enclos<T extends Animal> {
 	protected String proprete;
 	ArrayList<T> listeAnimaux =  new ArrayList<T>();
 	ArrayList<T> listeAnimauxTemporaire =  new ArrayList<T>();
+	ArrayList<T> listeAnimauxInvisible =  new ArrayList<T>();
 	
 	public String getNom() {
 		return nom;
@@ -119,6 +120,7 @@ public abstract class Enclos<T extends Animal> {
 	 * @return
 	 */
 	 public abstract Enclos creerEnclosTemporaire();
+	 public abstract void salirEnclos();
 	/**
 	 * Entretenir Enclos
 	 * Vider les animaux d'abord
@@ -128,12 +130,11 @@ public abstract class Enclos<T extends Animal> {
 		if(this.getNbrAnimaux() > 0){
 			if(this.getProprete() == PROPRETE3){
 				System.out.println("Il faut entretenir l'enclos !");
-				Enclos temporaireEnclos = this.creerEnclosTemporaire();
+				Enclos<T> temporaireEnclos = this.creerEnclosTemporaire();
 				listeAnimauxTemporaire =  this.listeAnimaux ;
 				//On transfere les animaux
-				for(Animal a : listeAnimauxTemporaire){
+				for(T a : listeAnimauxTemporaire){
 					temporaireEnclos.ajoutAnimal(a);
-					System.out.println(a);
 				}
 				this.setNbrAnimaux(0);
 				this.listeAnimaux.clear();
@@ -143,11 +144,32 @@ public abstract class Enclos<T extends Animal> {
 				
 				this.listeAnimaux = listeAnimauxTemporaire;
 				//On retransfère les animaux
-				for(Animal a : listeAnimauxTemporaire){
+				for(T a : listeAnimauxTemporaire){
+					temporaireEnclos.enleverAnimal(a);
+				}
+				listeAnimauxTemporaire.clear();
+			}else if(this.getProprete() == PROPRETE2){
+				System.out.println("Il faut entretenir l'enclos !");
+				Enclos<T> temporaireEnclos = this.creerEnclosTemporaire();
+				listeAnimauxTemporaire =  this.listeAnimaux;
+				//On transfere les animaux
+				for(T a : listeAnimauxTemporaire){
+					temporaireEnclos.ajoutAnimal(a);
+				}
+				this.setNbrAnimaux(0);
+				this.listeAnimaux.clear();
+				
+				this.setProprete(PROPRETE1);
+				System.out.println("Enclos bien nettoyé !");
+				
+				this.listeAnimaux = listeAnimauxTemporaire;
+				//On retransfère les animaux
+				for(T a : listeAnimauxTemporaire){
 					temporaireEnclos.enleverAnimal(a);
 				}
 				listeAnimauxTemporaire.clear();
 			}else{
+			
 					System.out.println("L'enclos n'a pas besoin d'être nettoyer !");
 			}
 		}else{
@@ -156,7 +178,7 @@ public abstract class Enclos<T extends Animal> {
 	}
 	public String recupClass(){
 		//ArrayList<T> a = this.listeAnimaux;
-		ArrayList<T> a = this.listeAnimaux;
+		ArrayList<T> a = this.listeAnimauxInvisible;
 		String enclos1 = "";
 		for(Animal b : a){
 			enclos1 = b.getClass().toString();	

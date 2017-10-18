@@ -71,8 +71,8 @@ public class Aquarium <T extends Animal & Marin> extends Enclos<T>{
 	}
 	@Override
 	public Enclos creerEnclosTemporaire() {
-		// TODO Auto-generated method stub
-		return null;
+		Aquarium<T> enclosTemporaire = new Aquarium<T>(this.getNom(), this.getSuperficie(), this.getMaxAnimaux(), this.getProfondeur());
+		return enclosTemporaire;
 	}
 	
 }

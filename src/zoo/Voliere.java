@@ -60,8 +60,8 @@ public class Voliere <T extends Animal & Volant> extends Enclos<T>{
 	}
 	@Override
 	public Enclos creerEnclosTemporaire() {
-		// TODO Auto-generated method stub
-		return null;
+		Voliere<T> enclosTemporaire = new Voliere<T>(this.getNom(), this.getSuperficie(), this.getMaxAnimaux(), this.getHauteur());
+		return enclosTemporaire;
 	}
 
 
