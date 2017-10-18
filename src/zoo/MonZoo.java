@@ -56,24 +56,35 @@ public class MonZoo {
 	}
 	
 	public void transfererAnimal(){
-		/*System.out.println("Choisir l'enclos d'origine");
-		choiceEnclos = scan.nextInt();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Choisir l'enclos d'origine");
+		int choiceEnclos = scan.nextInt();
 		System.out.println("Choisir l'enclos vers qui transferer");
-		choiceFutur = scan.nextInt();
-		System.out.println("Les animaux de l'enclos :");
-		List<Animal> liste= this.listeEnclos.get(choiceEnclos).listeAnimaux;
-		for(Animal a : liste){
-			System.out.println("-----------------"+i+" : ");
-			System.out.println(a);
-			i++;
-		}
-		if(this.listeEnclos.get(choiceEnclos).listeAnimaux.size() > 0 || this.listeEnclos.get(choiceEnclos).getNbrAnimaux()<=this.listeEnclos.get(choiceEnclos).getMaxAnimaux()){
-			System.out.println("Il n'y à pas d'animaux !");
+		int choiceFutur = scan.nextInt();
+		Enclos<Animal> enclos1  = this.listeEnclos.get(choiceEnclos);
+		String e1 = enclos1.recupClass();
+		Enclos<Animal> enclos2  = this.listeEnclos.get(choiceFutur);
+		String e2 = enclos2.recupClass();
+		if(e2 == e1){
+			if(this.listeEnclos.get(choiceEnclos).listeAnimaux.size() > 0 || this.listeEnclos.get(choiceEnclos).getNbrAnimaux()<=this.listeEnclos.get(choiceEnclos).getMaxAnimaux()){
+				System.out.println("Les animaux de l'enclos :");
+				List<Animal> liste= this.listeEnclos.get(choiceEnclos).listeAnimaux;
+				int i =0;
+				for(Animal a : liste){
+					System.out.println("	"+i+"- "+a);
+					i++;
+				}
+				
+					System.out.println("Choisir l'animal :");
+					int choiceAnimal = scan.nextInt();
+					employer.transferAnimalEnclos(this.listeEnclos.get(choiceEnclos), this.listeEnclos.get(choiceFutur), liste.get(choiceAnimal));
+					
+			}else{
+				System.out.println("Il n'y à pas d'animaux !");
+			}
 		}else{
-			System.out.println("Choisir l'animal :");
-			choiceAnimal = scan.nextInt();
-			employer.transferAnimalEnclos(this.listeEnclos.get(choiceEnclos), this.listeEnclos.get(choiceFutur), liste.get(choiceAnimal));
-		}*/
+			System.out.println("Veuillez choisir un enclos qui correspond !");
+		}
 		
 	}
 	
@@ -517,10 +528,10 @@ public class MonZoo {
 									break;
 						    case "q":
 						    	System.out.println("Bye !");
-						    	loop1 = true;
+						    	loop1 = false;
 						    	break;
 					    }
-					}while(loop1 = true);
+					}while(loop1 == true);
 					break;
 				case 9:
 					System.out.println("Bye");

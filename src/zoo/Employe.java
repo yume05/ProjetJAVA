@@ -54,13 +54,19 @@ public class Employe implements EmployeInterface {
 		// TODO Auto-generated method stub
 		enclos.nourirAnimaux();
 	}
+	
 	@Override
 	public void transferAnimalEnclos(Enclos enclosOriginal, Enclos enclosFutur, Animal monAnimal) {
 		// TODO Auto-generated method stub
 		if(enclosFutur.getNbrAnimaux() < enclosFutur.getMaxAnimaux()){
-			enclosFutur.ajoutAnimal(monAnimal);
-			enclosOriginal.enleverAnimal(monAnimal);
-			System.out.println("Le transfère s'est bien passé !");
+			if(enclosFutur.getClass() == enclosOriginal.getClass()){
+				enclosFutur.ajoutAnimal(monAnimal);
+				enclosOriginal.enleverAnimal(monAnimal);
+				System.out.println("Le transfère s'est bien passé !");
+			}else{
+				System.out.println("Vous ne pouvez pas transférer cet animal dans cette enclos ci !!");
+			}
+			
 		}else{
 			System.out.println("Impossible de transferer l'animal dans cette enclos");
 		}

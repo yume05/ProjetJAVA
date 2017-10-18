@@ -148,9 +148,10 @@ abstract class Animal{
 	public void manger(){
 		if(this.indiceFaim == true){
 			System.out.println("Je ne veux pas manger, je n'ai pas faim ...");
-		}else if(this.indiceSommeil == false){
+		}else if(this.indiceFaim == false){
 			mangerVrai();
 			this.indiceFaim = true;
+			System.out.println("Nous avons bien été nourris !");
 		}
 	}
 	
